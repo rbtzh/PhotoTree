@@ -28,7 +28,7 @@ def getthumbnail(imagePathList, outPath, matrixW, matrixH, thumbnailSize=(1200,8
     outfile = outPath + ".png"
     try:
         outIm = mergeGivenImageList(getThumbnailsList(imagePathList, thumbnailSize), thumbnailSize, matrixW, matrixH)
-        outIm.save(outfile)
+        outIm.save(outfile,optimize=True, quality=95)
     except OSError:
         print(OSError)
         print("cannot convert")
