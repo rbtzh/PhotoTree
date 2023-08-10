@@ -17,7 +17,7 @@ def mergeGivenImageList(thumbnailsList, thumbnailSize, matrixW, matrixH):
         raise Exception("Image list can't fit into given matrix size.")
     w = matrixW * thumbnailSize[0]
     h = matrixH * thumbnailSize[1]
-    outIm = Image.new("RGBA", (w,h))
+    outIm = Image.new("RGB", (w,h))
     for index in range(len(thumbnailsList)):
         location = ((int(index % matrixW)*thumbnailSize[0]), (int(index / matrixH)*thumbnailSize[1]))
         print(location)
@@ -25,10 +25,11 @@ def mergeGivenImageList(thumbnailsList, thumbnailSize, matrixW, matrixH):
     return outIm
 
 def getthumbnail(imagePathList, outPath, matrixW, matrixH, thumbnailSize=(1200,800)):
-    outfile = outPath + ".png"
+    outfile = outPath + ".jpg"
     try:
         outIm = mergeGivenImageList(getThumbnailsList(imagePathList, thumbnailSize), thumbnailSize, matrixW, matrixH)
-        outIm.save(outfile,optimize=True, quality=95)
+        outIm.save(outfile)
     except OSError:
         print(OSError)
         print("cannot convert")
+    return True
