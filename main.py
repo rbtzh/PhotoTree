@@ -1,16 +1,17 @@
-import os
+import os, sys
 import random
-from PIL import Image
 from crop_and_append import getthumbnail
 from matrixsize import get_size
 #TODO: Let user choose which path as root filder
 
 #config
-ROOTPATH = "2023"
+ROOTPATH_PRESET = "C:/Users/zhao_/Pictures/2023"
 ALLOWED_MATRIXSIZES = [1,2,3,4,5,6]
 RAW_FILE_NEEDED_TO_PASS = ".NEF"
 CAMERA_IMAGE_SIZE = (6000,4000)
 PREFIX="thumbnail-"
+
+ROOTPATH = sys.argv[1] if len(sys.argv) > 1 else ROOTPATH_PRESET
 
 for root, dirs, files in os.walk(ROOTPATH, topdown=False):
     if files:
